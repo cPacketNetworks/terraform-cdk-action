@@ -12,7 +12,7 @@ export interface Inputs {
   mode: string;
   terraformCloudToken: string;
   githubToken: string;
-  commentOnPr: boolean;
+  commentMode: string;
   updateComment: boolean;
   customNpxArgs: string;
   cdktfArgs: string;

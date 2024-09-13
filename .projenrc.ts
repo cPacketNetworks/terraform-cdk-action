@@ -62,11 +62,12 @@ const inputs = {
     required: false,
     type: "string",
   },
-  commentOnPr: {
-    description: "Whether to comment the plan / the status on the PR",
-    default: "true",
+  commentMode: {
+    description:
+      "Where to comment the results of the operation; on the `commit`, the `pr`, or `none` of the above",
+    default: "pr",
     required: false,
-    type: "boolean",
+    type: "string",
   },
   updateComment: {
     description:
@@ -91,6 +92,12 @@ const inputs = {
   },
 };
 
+const outputs = {
+  terraformmOutput: {
+    description: "Output of the terraform execution",
+  },
+};
+
 const repoName = "terraform-cdk-action";
 const description =
   "The Terraform CDK GitHub Action allows you to run CDKTF as part of your CI/CD workflow.";
@@ -99,6 +106,7 @@ const project = new TerraformCdkActionProject({
   name: repoName,
   description,
   inputs,
+  outputs,
   metadata: {
     author: "HashiCorp, Inc.",
     description,

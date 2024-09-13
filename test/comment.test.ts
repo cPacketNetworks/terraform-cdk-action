@@ -38,7 +38,7 @@ describe("comment", () => {
     mode: "plan-only",
     terraformCloudToken: "xxx",
     githubToken: "xxx",
-    commentOnPr: true,
+    commentMode: "pr",
     updateComment: true,
     customNpxArgs: "",
     cdktfArgs: "",
@@ -87,11 +87,11 @@ describe("comment", () => {
   describe("postCommentOnPr", () => {
     it("should skip commenting if commentOnPr is false", async () => {
       const commentController = new CommentController({
-        inputs: { ...defaultInput, commentOnPr: false },
+        inputs: { ...defaultInput, commentMode: "none" },
         context,
         octokit,
       });
-      const actual = await commentController.postCommentOnPr("some-message");
+      const actual = await commentController.postComment("some-message");
       expect(createComment).not.toBeCalled();
       expect(updateComment).not.toBeCalled();
       expect(actual).toBeUndefined();
@@ -109,7 +109,7 @@ describe("comment", () => {
         } as Context,
         octokit,
       });
-      const actual = await commentController.postCommentOnPr("some-message");
+      const actual = await commentController.postComment("some-message");
       expect(createComment).not.toBeCalled();
       expect(updateComment).not.toBeCalled();
       expect(actual).toBeUndefined();
@@ -122,7 +122,7 @@ describe("comment", () => {
         context,
         octokit,
       });
-      const actual = await commentController.postCommentOnPr("some-message");
+      const actual = await commentController.postComment("some-message");
       expect(actual).toBeUndefined();
       expect(createComment).toBeCalledWith({
         body: `<!-- terraform cdk action for options with hash ${hash} -->\nsome-message`,
@@ -138,7 +138,7 @@ describe("comment", () => {
         context,
         octokit,
       });
-      const actual = await commentController.postCommentOnPr("some-message");
+      const actual = await commentController.postComment("some-message");
       expect(actual).toBeUndefined();
       expect(updateComment).not.toBeCalled();
       expect(createComment).toBeCalledWith({
@@ -154,7 +154,7 @@ describe("comment", () => {
         context,
         octokit,
       });
-      const actual = await commentController.postCommentOnPr("some-message");
+      const actual = await commentController.postComment("some-message");
       expect(actual).toBeUndefined();
       expect(updateComment).not.toBeCalled();
       expect(createComment).toBeCalledWith({
@@ -170,7 +170,7 @@ describe("comment", () => {
         context,
         octokit,
       });
-      const actual = await commentController.postCommentOnPr("some-message");
+      const actual = await commentController.postComment("some-message");
       expect(actual).toBeUndefined();
       expect(updateComment).toBeCalledWith({
         body: `<!-- terraform cdk action for options with hash ${hash} -->\nsome-message`,
@@ -193,7 +193,7 @@ describe("comment", () => {
         } as Context,
         octokit,
       });
-      const actual = await commentController.postCommentOnPr("some-message");
+      const actual = await commentController.postComment("some-message");
       expect(createComment).not.toBeCalled();
       expect(updateComment).toBeCalledWith({
         body: `<!-- terraform cdk action for options with hash ${hash} -->\nsome-message`,

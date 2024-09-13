@@ -25,7 +25,7 @@ function postComment(
   output: string | undefined,
   outputTitle: Error | string
 ): Promise<void> {
-  return commentController.postCommentOnPr(
+  return commentController.postComment(
     `### ${title}
 
 ${runUrl ? `<a target="_blank" href='${runUrl}'>🌍 View run</a>` : ""}
@@ -112,6 +112,7 @@ async function execute(
     throw error;
   }
 
+  core.setOutput("terraformOutput", output);
   await reportSuccess(output, getRunUrl(output));
   core.debug(`Finished executing`);
 }
@@ -125,7 +126,7 @@ export async function run(): Promise<void> {
     mode: input.mode,
     terraformCloudToken: input.terraformCloudToken,
     githubToken: input.githubToken,
-    commentOnPr: input.commentOnPr,
+    commentMode: input.commentMode,
     updateComment: input.updateComment,
     customNpxArgs: input.customNpxArgs,
     cdktfArgs: input.cdktfArgs,
