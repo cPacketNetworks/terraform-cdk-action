@@ -34,17 +34,25 @@ type GithubActionInput = {
   deprecationMessage?: string;
 };
 
+type GithubActionOutput = {
+  /** A `string` description of the output parameter. */
+  description: string;
+};
+
 export interface TerraformCdkActionOptions
   extends Partial<GitHubActionTypeScriptOptions> {
   readonly metadata: Partial<GitHubActionMetadata>;
   readonly inputs: {
     [inputName: string]: GithubActionInput;
   };
+  readonly outputs: {
+    [outputName: string]: GithubActionOutput;
+  };
 }
 
 export class TerraformCdkActionProject extends GitHubActionTypeScriptProject {
   constructor(options: TerraformCdkActionOptions) {
-    const { name, description, inputs, metadata } = options;
+    const { name, description, inputs, outputs, metadata } = options;
 
     super({
       name: name ?? "terraform-cdk-action",
@@ -98,6 +106,13 @@ export class TerraformCdkActionProject extends GitHubActionTypeScriptProject {
       actionMetadata: {
         ...metadata,
         inputs: Object.entries(inputs).reduce(
+          (acc, [key, value]) => ({
+            ...acc,
+            [key]: { ...value, type: undefined },
+          }),
+          {}
+        ),
+        outputs: Object.entries(outputs).reduce(
           (acc, [key, value]) => ({
             ...acc,
             [key]: { ...value, type: undefined },

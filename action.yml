@@ -34,9 +34,9 @@ inputs:
   githubToken:
     description: The github token to use
     required: false
-  commentOnPr:
-    description: Whether to comment the plan / the status on the PR
-    default: "true"
+  commentMode:
+    description: Where to comment the results of the operation; on the `commit`, the `pr`, or `none` of the above
+    default: pr
     required: false
   updateComment:
     description: Whether to update the last comment on the PR rather than adding a new comment
@@ -50,3 +50,6 @@ inputs:
     description: The additional CLI arguments to pass to cdktf as part of the cdktf-cli execution.
     default: ""
     required: false
+outputs:
+  planOutput:
+    description: Output of the terraform execution
