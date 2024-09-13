@@ -112,7 +112,7 @@ async function execute(
     throw error;
   }
 
-  core.setOutput("planOutput", output);
+  core.setOutput("terraformOutput", output);
   await reportSuccess(output, getRunUrl(output));
   core.debug(`Finished executing`);
 }

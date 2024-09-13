@@ -14,7 +14,7 @@ The Terraform CDK GitHub Action allows you to run CDKTF as part of your CI/CD wo
 | stackName | The stack to run / plan, only required when the mode is `plan-only` or `plan-and-apply` | `false` |  |
 | terraformCloudToken | The Terraform Cloud / Terraform Enterprise token to use | `false` |  |
 | githubToken | The github token to use | `false` |  |
-| commentOnPr | Whether to comment the plan / the status on the PR | `false` | true |
+| commentMode | Where to comment the results of the operation; on the `commit`, the `pr`, or `none` of the above | `false` | pr |
 | updateComment | Whether to update the last comment on the PR rather than adding a new comment | `false` | true |
 | customNpxArgs | The additional CLI arguments to pass to npx as part of the cdktf-cli execution. | `false` |  |
 | cdktfArgs | The additional CLI arguments to pass to cdktf as part of the cdktf-cli execution. | `false` |  |

@@ -93,7 +93,7 @@ const inputs = {
 };
 
 const outputs = {
-  planOutput: {
+  terraformmOutput: {
     description: "Output of the terraform execution",
   },
 };
