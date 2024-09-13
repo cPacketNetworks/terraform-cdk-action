@@ -93,8 +93,9 @@ const inputs = {
 };
 
 const outputs = {
-  terraformmOutput: {
-    description: "Output of the terraform execution",
+  hasTerraformChanges: {
+    description:
+      "Whether or not changes were required during terraform execution",
   },
 };
 
