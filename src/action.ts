@@ -112,7 +112,7 @@ async function execute(
     throw error;
   }
 
-  core.setOutput("terraformOutput", output);
+  core.setOutput("hasTerraformChanges", hasTerraformChanges(output));
   await reportSuccess(output, getRunUrl(output));
   core.debug(`Finished executing`);
 }
