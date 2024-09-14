@@ -128,6 +128,7 @@ export async function run(): Promise<void> {
     githubToken: input.githubToken,
     commentMode: input.commentMode,
     updateComment: input.updateComment,
+    commentNoChanges: input.commentNoChanges,
     customNpxArgs: input.customNpxArgs,
     cdktfArgs: input.cdktfArgs,
   };
@@ -175,22 +176,27 @@ export async function run(): Promise<void> {
       await execute(
         `plan ${inputs.stackName}`,
         inputs,
-        (output, runUrl) =>
-          hasTerraformChanges(output)
-            ? postComment(
-                commentController,
-                `✅ Successfully planned Terraform CDK Stack '${inputs.stackName}'`,
-                runUrl,
-                output,
-                "Show Plan"
-              )
-            : postComment(
-                commentController,
-                `🟰 No changes in Terraform CDK Stack '${inputs.stackName}'`,
-                runUrl,
-                output,
-                "Show Plan"
-              ),
+        (output, runUrl) => {
+          if (hasTerraformChanges(output)) {
+            return postComment(
+              commentController,
+              `✅ Successfully planned Terraform CDK Stack '${inputs.stackName}'`,
+              runUrl,
+              output,
+              "Show Plan"
+            );
+          } else if (inputs.commentNoChanges) {
+            return postComment(
+              commentController,
+              `🟰 No changes in Terraform CDK Stack '${inputs.stackName}'`,
+              runUrl,
+              output,
+              "Show Plan"
+            );
+          } else {
+            return Promise.resolve();
+          }
+        },
         (error, output, runUrl) =>
           postComment(
             commentController,
@@ -211,22 +217,27 @@ export async function run(): Promise<void> {
       await execute(
         `apply ${inputs.stackName} --auto-approve`,
         inputs,
-        (output, runUrl) =>
-          hasTerraformChanges(output)
-            ? postComment(
-                commentController,
-                `✅ Successfully applied Terraform CDK Stack '${inputs.stackName}'`,
-                runUrl,
-                output,
-                "Show Run"
-              )
-            : postComment(
-                commentController,
-                `🟰 No changes to apply in Terraform CDK Stack '${inputs.stackName}'`,
-                runUrl,
-                output,
-                "Show Run"
-              ),
+        (output, runUrl) => {
+          if (hasTerraformChanges(output)) {
+            return postComment(
+              commentController,
+              `✅ Successfully applied Terraform CDK Stack '${inputs.stackName}'`,
+              runUrl,
+              output,
+              "Show Run"
+            );
+          } else if (inputs.commentNoChanges) {
+            return postComment(
+              commentController,
+              `🟰 No changes to apply in Terraform CDK Stack '${inputs.stackName}'`,
+              runUrl,
+              output,
+              "Show Run"
+            );
+          } else {
+            return Promise.resolve();
+          }
+        },
         (error, output, runUrl) =>
           postComment(
             commentController,

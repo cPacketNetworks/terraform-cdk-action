@@ -76,6 +76,13 @@ const inputs = {
     required: false,
     type: "boolean",
   },
+  commentNoChanges: {
+    description:
+      "Whether to add a comment when a terraform execution results in no changes",
+    default: "true",
+    required: false,
+    type: "boolean",
+  },
   customNpxArgs: {
     description:
       "The additional CLI arguments to pass to npx as part of the cdktf-cli execution.",
