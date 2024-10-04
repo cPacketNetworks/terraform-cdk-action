@@ -14,5 +14,6 @@ export const terraformCloudToken: string = core.getInput("terraformCloudToken");
 export const githubToken: string = core.getInput("githubToken");
 export const commentMode: string = core.getInput("commentMode");
 export const updateComment: boolean = core.getBooleanInput("updateComment");
+export const commentNoChanges: boolean = core.getBooleanInput("commentNoChanges");
 export const customNpxArgs: string = core.getInput("customNpxArgs");
 export const cdktfArgs: string = core.getInput("cdktfArgs");

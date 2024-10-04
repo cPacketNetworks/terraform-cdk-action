@@ -42,6 +42,10 @@ inputs:
     description: Whether to update the last comment on the PR rather than adding a new comment
     default: "true"
     required: false
+  commentNoChanges:
+    description: Whether to add a comment when a terraform execution results in no changes
+    default: "true"
+    required: false
   customNpxArgs:
     description: The additional CLI arguments to pass to npx as part of the cdktf-cli execution.
     default: ""

@@ -40,6 +40,7 @@ describe("comment", () => {
     githubToken: "xxx",
     commentMode: "pr",
     updateComment: true,
+    commentNoChanges: true,
     customNpxArgs: "",
     cdktfArgs: "",
   };
