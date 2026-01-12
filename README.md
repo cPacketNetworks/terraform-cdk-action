@@ -1,4 +1,6 @@
 # Terraform CDK GitHub Action
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FcPacketNetworks%2Fterraform-cdk-action.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FcPacketNetworks%2Fterraform-cdk-action?ref=badge_shield)
+
 
 The Terraform CDK GitHub Action allows you to run CDKTF as part of your CI/CD workflow.
 
@@ -161,3 +163,7 @@ jobs:
 ## Limitations
 
 This action is intended to be limited to a single stack. While you could pass `*` as the stack name and use multi-stack deployments, we don't currently support all the complexities of doing accurate plans across multiple dependent workspaces within the action.
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FcPacketNetworks%2Fterraform-cdk-action.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2FcPacketNetworks%2Fterraform-cdk-action?ref=badge_large)
