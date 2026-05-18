@@ -1,9 +1,10 @@
 /**
- * Copyright (c) HashiCorp, Inc.
+ * Copyright IBM Corp. 2021, 2026
  * SPDX-License-Identifier: MPL-2.0
  */
 
 import { TextFile } from "projen";
+import { GithubCredentials } from "projen/lib/github";
 import { JobPermission } from "projen/lib/github/workflows-model";
 import { UpgradeDependenciesSchedule } from "projen/lib/javascript";
 import {
@@ -53,6 +54,9 @@ export class TerraformCdkActionProject extends GitHubActionTypeScriptProject {
       repository: `https://github.com/hashicorp/${name}.git`,
       authorName: "HashiCorp",
       authorUrl: "https://hashicorp.com",
+      projenCredentials: GithubCredentials.fromPersonalAccessToken({
+        secret: "GITHUB_TOKEN",
+      }),
       authorOrganization: true,
       minMajorVersion: 1, // should only be set once you are ready for a 1.0 release!
       defaultReleaseBranch: "main",
@@ -142,7 +146,7 @@ export class TerraformCdkActionProject extends GitHubActionTypeScriptProject {
       marker: true,
       lines: [
         `/**
- * Copyright (c) HashiCorp, Inc.
+ * Copyright IBM Corp. 2021, 2026
  * SPDX-License-Identifier: MPL-2.0
  */
 
@@ -300,7 +304,7 @@ import * as core from "@actions/core";`,
     // The below is necessary in order to allow the git-tags workflow to run
     releaseWorkflow?.addOverride(
       "jobs.release_github.steps.3.env.GITHUB_TOKEN",
-      "${{ secrets.PROJEN_GITHUB_TOKEN }}"
+      "${{ github.token }}"
     );
   }
 }
