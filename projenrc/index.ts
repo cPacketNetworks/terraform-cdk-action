@@ -120,7 +120,7 @@ export class TerraformCdkActionProject extends GitHubActionTypeScriptProject {
           {}
         ),
         runs: {
-          using: RunsUsing.NODE_20,
+          using: "node24" as RunsUsing,
           main: "dist/index.js",
         },
       },
@@ -139,7 +139,7 @@ export class TerraformCdkActionProject extends GitHubActionTypeScriptProject {
         "@action-validator/cli",
       ],
       peerDeps: ["constructs@^10.0.0"],
-      minNodeVersion: "20.9.0",
+      minNodeVersion: "24.0.0",
     });
 
     new Automerge(this);
