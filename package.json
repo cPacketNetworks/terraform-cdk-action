@@ -36,7 +36,7 @@
     "@action-validator/core": "^0.6.0",
     "@types/fs-extra": "^9.0.13",
     "@types/jest": "^29",
-    "@types/node": "^20",
+    "@types/node": "^24",
     "@typescript-eslint/eslint-plugin": "^8",
     "@typescript-eslint/parser": "^8",
     "@vercel/ncc": "^0.38.4",
@@ -69,7 +69,7 @@
     "@hashicorp/js-releases": "^1.7.0"
   },
   "engines": {
-    "node": ">= 20.9.0"
+    "node": ">= 24.0.0"
   },
   "main": "lib/index.js",
   "license": "MPL-2.0",
