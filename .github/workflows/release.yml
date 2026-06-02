@@ -31,7 +31,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@1e60f620b9541d16bece96c5465dc8ee9832be0b
         with:
-          node-version: 20.9.0
+          node-version: 24.0.0
       - name: Install dependencies
         run: yarn install --check-files --frozen-lockfile
       - name: release
@@ -68,7 +68,7 @@ jobs:
     steps:
       - uses: actions/setup-node@1e60f620b9541d16bece96c5465dc8ee9832be0b
         with:
-          node-version: 20.9.0
+          node-version: 24.0.0
       - name: Download build artifacts
         uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16
         with:

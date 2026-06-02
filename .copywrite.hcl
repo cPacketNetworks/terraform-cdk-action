@@ -16,5 +16,6 @@ project {
     "dist/**",
     "test-reports/**",
     "action.yml",
+    "src/inputs.ts",
   ]
 }

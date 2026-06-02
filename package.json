@@ -36,11 +36,11 @@
     "@action-validator/core": "^0.6.0",
     "@types/fs-extra": "^9.0.13",
     "@types/jest": "^29",
-    "@types/node": "^20",
+    "@types/node": "^24",
     "@typescript-eslint/eslint-plugin": "^7",
     "@typescript-eslint/parser": "^7",
-    "@vercel/ncc": "^0.38.1",
-    "action-docs": "^1.2.0",
+    "@vercel/ncc": "^0.38.4",
+    "action-docs": "^2.5.1",
     "commit-and-tag-version": "^12",
     "constructs": "10.0.0",
     "eslint": "^8",
@@ -69,7 +69,7 @@
     "@hashicorp/js-releases": "^1.7.0"
   },
   "engines": {
-    "node": ">= 20.9.0"
+    "node": ">= 24.0.0"
   },
   "main": "lib/index.js",
   "license": "MPL-2.0",
