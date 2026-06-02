@@ -113,6 +113,7 @@ async function execute(
     throw error;
   }
 
+  core.setOutput("hasTerraformChanges", hasTerraformChanges(output));
   await reportSuccess(output, getRunUrl(output));
   core.debug(`Finished executing`);
 }
